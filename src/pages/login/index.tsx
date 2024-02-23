@@ -4,9 +4,10 @@ import Grid from '@mui/material/Grid';
 import { Typography, TextField, InputAdornment, IconButton, Button, Checkbox } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import frontimage from '../../assets/images/frontImage.svg';
+import Frontimage from '../../assets/images/frontImage.svg';
 import Logo from '../../assets/images/logo.svg';
-import shadow from '../../assets/images/shadow.svg';
+import shadow from '../../assets/images/shadow.png';
+import "../../styles/login.css";
 
 export default function BasicGrid() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,26 +34,29 @@ export default function BasicGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
-        <Grid xs={12} sm={7} md={7} lg={8}>
-          <img
-            src={frontimage}
-            alt="frontimage"
+        <Grid item xs={12} sm={7} md={7} lg={8} sx={{ backgroundImage: `url(${Frontimage})`, backgroundSize: 'cover', backgroundRepeat: 'no-repeat', height: '100vh' }}>
+          {/* No need for the <img> tag */}
+        </Grid>
+        <Grid item xs={12} sm={5} md={5} lg={4} container justifyContent="center" alignItems="center" sx={{ position: 'relative' }}>
+          <Box
             style={{
-              width: '100%',
-              height: '102vh'
+              position: 'absolute',
+              top: 10,
+              right: 0,
+              width: '250px',
+              height: '250px', 
+              backgroundImage: `url(${shadow})`, 
+              backgroundPosition: 'top right',
+              backgroundRepeat: 'no-repeat', 
+              zIndex: -1
             }}
           />
-        </Grid>
-        <Grid item xs={12} sm={5} md={5} lg={4} container justifyContent="center" alignItems="center" style={{ position: 'relative' }}>
-          <Box >
-            <img src={shadow} alt="shadow" style={{ position: 'absolute', top: 0, right: 0, width: 'auto', height: 'auto', }} />
-          </Box>
-          <Box width={350} sx={{ textAlign: 'center' }}>
+          <Box width={{ xs: '90%', sm: '70%', md: '60%', lg: '50%' }} sx={{ textAlign: 'center', position: 'absolute', top: 270 }}>
             <img src={Logo} alt="Logo" style={{ marginBottom: 16 }} />
             <Typography sx={{ fontWeight: '700', fontSize: '30px', color: '#2B2F38' }}>
               Log in to your account
             </Typography>
-            <Typography sx={{ fontWeight: '400', fontsize: '16px', color: '#667085' }}>
+            <Typography sx={{ fontWeight: '400', fontSize: '16px', color: '#667085' }}>
               Welcome back! Please enter your details.
             </Typography>
             <TextField
@@ -101,15 +105,14 @@ export default function BasicGrid() {
               type="submit"
               variant="contained"
               fullWidth
-              sx={{ marginTop: 2, backgroundColor: '#EB6247', color: '#FFFFFF', textDecoration: 'none', }}
+              sx={{ marginTop: 2, backgroundColor: '#EB6247', color: '#FFFFFF', textDecoration: 'none' }}
             >
               Sign In
             </Button>
-            {/* Footer */}
-            <Box style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', textAlign: 'center', padding: '16px 0' }}>
-              <Typography sx={{ color: '#626262', fontWeight: '400', fontsize: '14px' }}>
-                © 2024 Copyright <span style={{ color: '#4191FF' }}>10XTECHNOLOGIES.</span>All Rights Reserved
-              </Typography>
+            <Box className="login-footer">
+              <span>© 2024 Copyright</span>{" "}
+              <span className="login-footer-link">10XTECHNOLOGIES</span>. All Rights
+              Reserved
             </Box>
           </Box>
         </Grid>
@@ -117,4 +120,3 @@ export default function BasicGrid() {
     </Box>
   );
 }
-

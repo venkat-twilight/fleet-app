@@ -1,0 +1,11 @@
+.login-footer {
+    position: absolute;
+    top: 590px;
+    width: 100%;
+    text-align: center;
+  }
+  .login-footer-link {
+    color: #4191ff;
+    cursor: pointer;
+  }
+  
