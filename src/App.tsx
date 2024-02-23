@@ -1,13 +1,10 @@
 import React from "react"
 import "./App.css"
 import { Typography } from "@mui/material"
+import Dashboard from "./pages/dashboard"
 
 function App() {
-  return (
-    <div>
-      <Typography variant="h5">Fleet app</Typography>
-    </div>
-  )
+  return <Dashboard />
 }
 
 export default App
