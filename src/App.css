@@ -6,3 +6,9 @@
 * {
   font-family: "PoppinsRegular", sans-serif !important;
 }
+
+ html, body, #app, #app>div {
+     height: 100%;
+    overflow: hidden;
+   }
+  
