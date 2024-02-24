@@ -1,13 +1,9 @@
 import React from "react"
 import "./App.css"
-import { Typography } from "@mui/material"
-// import Dashboard from "./pages/dashboard"
-import Login from './pages/login'
+import AppRouter from "./routes"
 
 function App() {
-  return <Login/>
-  // <Dashboard />
-
+  return <AppRouter />
 }
 
 export default App
