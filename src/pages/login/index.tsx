@@ -57,7 +57,7 @@ export default function Loginpage() {
             height: "100vh",
           }}
         >
-          {/* No need for the <img> tag */}
+     
         </Grid>
         <Grid
           item
@@ -84,8 +84,8 @@ export default function Loginpage() {
             }}
           />
           <Box
-            width={{ xs: "90%", sm: "70%", md: "60%", lg: "50%" }}
-            sx={{ textAlign: "center", position: "absolute", top: 270 }}
+            width={{ xs: "90%", sm: "80%", md: "75%", lg: "70%" }}
+            sx={{ textAlign: "center", position: "absolute", }}
           >
             <img src={Logo} alt="Logo" style={{ marginBottom: 16 }} />
             <Typography
@@ -147,7 +147,7 @@ export default function Loginpage() {
                 <Checkbox
                   sx={{
                     "& .MuiSvgIcon-root": { fontSize: 16 },
-                  }} /* Add your Checkbox props here */
+                  }} 
                 />
                 <span
                   style={{
@@ -185,12 +185,13 @@ export default function Loginpage() {
             >
               Sign In
             </Button>
-            <Box className="login-footer">
+           
+          </Box>
+          <Box className="login-footer">
               <span>© 2024 Copyright</span>{" "}
               <span className="login-footer-link">10XTECHNOLOGIES</span>. All
               Rights Reserved
             </Box>
-          </Box>
         </Grid>
       </Grid>
     </Box>
