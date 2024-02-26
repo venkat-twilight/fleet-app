@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react"
 import Box from "@mui/material/Box"
 import Grid from "@mui/material/Grid"
@@ -12,7 +11,6 @@ import {
 } from "@mui/material"
 import VisibilityIcon from "@mui/icons-material/Visibility"
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff"
-import Frontimage from "../../assets/images/frontImage.svg"
 import Logo from "../../assets/images/logo.svg"
 import shadow from "../../assets/images/shadow.png"
 import "../../styles/login.css"
@@ -48,7 +46,13 @@ export default function Loginpage() {
   const onSubmit = (values: any) => {
     const isMatch = checkCredentials(values.email, values.password)
     if (isMatch) {
-      Interface.post("/", formik.values)
+      const params = new URLSearchParams()
+      params.append("grant_type", "password")
+      params.append("client_id", "tenx-rbac")
+      params.append("username", "admintest")
+      params.append("password", formik.values.password)
+      params.append("email", formik.values.email)
+      Interface.post("openid-connect/token", params)
         .then((response) => {
           navigate("/dashboard")
         })
@@ -66,59 +70,28 @@ export default function Loginpage() {
   })
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box className="login-container">
       <Grid container spacing={0}>
-        <Grid
-          item
-          xs={12}
-          sm={7}
-          md={7}
-          lg={8}
-          sx={{
-            backgroundImage: `url(${Frontimage})`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            height: "100vh",
-          }}
-        ></Grid>
+        <Grid item xs={0} sm={7} md={8} lg={8} className="front-image"></Grid>
         <Grid
           item
           xs={12}
           sm={5}
-          md={5}
+          md={4}
           lg={4}
           container
           justifyContent="center"
           alignItems="center"
-          sx={{ position: "relative" }}
+          style={{ position: "relative" }}
         >
           <Box
-            style={{
-              position: "absolute",
-              top: 10,
-              right: 0,
-              width: "250px",
-              height: "250px",
-              backgroundImage: `url(${shadow})`,
-              backgroundPosition: "top right",
-              backgroundRepeat: "no-repeat",
-              zIndex: -1,
-            }}
+            className="shadow-image"
+            style={{ backgroundImage: `url(${shadow})` }}
           />
-
-          <Box
-            width={{ xs: "90%", sm: "80%", md: "75%", lg: "70%" }}
-            sx={{ textAlign: "center", position: "absolute" }}
-          >
-            <img src={Logo} alt="Logo" style={{ marginBottom: 16 }} />
-            <Typography
-              sx={{ fontWeight: "700", fontSize: "30px", color: "#2B2F38" }}
-            >
-              Log in to your account
-            </Typography>
-            <Typography
-              sx={{ fontWeight: "400", fontSize: "16px", color: "#667085" }}
-            >
+          <Box className="form">
+            <img src={Logo} alt="Logo" className="logo" />
+            <Typography className="title">Log in to your account</Typography>
+            <Typography className="subtitle">
               Welcome back! Please enter your details.
             </Typography>
             <form onSubmit={formik.handleSubmit}>
@@ -136,11 +109,7 @@ export default function Loginpage() {
                   variant="outlined"
                 />
                 {formik.touched.email && formik.errors.email && (
-                  <Box
-                    sx={{ color: "red", textAlign: "start", fontSize: "14px" }}
-                  >
-                    {formik.errors.email}
-                  </Box>
+                  <Box className="error-text">{formik.errors.email}</Box>
                 )}
               </Box>
               <Box>
@@ -173,48 +142,24 @@ export default function Loginpage() {
                   }}
                 />
                 {formik.touched.password && formik.errors.password && (
-                  <Box
-                    sx={{ color: "red", textAlign: "start", fontSize: "14px" }}
-                  >
-                    {formik.errors.password}
-                  </Box>
+                  <Box className="error-text">{formik.errors.password}</Box>
                 )}
               </Box>
-              <Box sx={{ marginTop: "10px" }}>
-                <Box
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    marginBottom: "16px",
-                  }}
-                >
-                  <Box style={{ display: "flex", alignItems: "center" }}>
+              <Box style={{ marginTop: "10px" }}>
+                <Box className="checkbox-container">
+                  <Box className="checkbox-label">
                     <Checkbox
                       sx={{
                         "& .MuiSvgIcon-root": { fontSize: 16 },
                       }}
                     />
-                    <span
-                      style={{
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        color: "#48505E",
-                      }}
-                    >
-                      Remember Me
-                    </span>
+                    <span>Remember Me</span>
                   </Box>
                   <Box>
-                    <a
-                      style={{
-                        textDecoration: "none",
-                        color: "#1366D9",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                      }}
-                    >
-                      Forgot Password?
-                    </a>
+                    <Typography className="forgot-password">
+                      {" "}
+                      Forgot Password?{" "}
+                    </Typography>
                   </Box>
                 </Box>
                 <Button

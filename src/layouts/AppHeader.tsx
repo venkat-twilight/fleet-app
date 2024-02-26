@@ -107,7 +107,7 @@ export default function AppHeader() {
                 <Box
                   sx={{ fontSize: "16px", color: "#4191FF", fontWeight: 400 }}
                 >
-                  Name
+                  Tayle
                 </Box>
                 <Box
                   sx={{
@@ -117,7 +117,7 @@ export default function AppHeader() {
                     display: "flex",
                   }}
                 >
-                  Role
+                  Admin
                 </Box>
               </Box>
               <Box sx={{ m: 1 }}>
